@@ -1,0 +1,42 @@
+header {
+  width: 100%;
+  position: relative;
+}
+
+nav {
+  background-color:black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 30px;
+  box-shadow: 0 4px 4px black;
+  position: fixed; 
+  top: 0; 
+  left: 0;
+  right: 0;
+  z-index: 3;
+  height: auto; 
+}
+
+nav img {
+  width: 178px;
+}
+
+nav a, nav span {
+  color:white;
+  text-decoration: none;
+  font-size: 24px;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0px;
+}
+
+nav .network {
+  margin-right: 5rem;
+}
+
+nav a:hover, nav span:hover {
+  text-decoration: underline;
+}
