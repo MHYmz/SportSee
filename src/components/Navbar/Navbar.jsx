@@ -8,7 +8,7 @@ const Navbar = () => {
     <header>
       <nav>
         <img src="./sportsee.png" alt="SportSee Logo" />
-        <Link to="/" className="homeLink">Accueil</Link>
+        <Link to="/">Accueil</Link>
         <span>Profil</span>
         <span>Paramètres</span>
         <span>Communauté</span>

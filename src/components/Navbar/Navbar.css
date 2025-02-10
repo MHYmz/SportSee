@@ -33,10 +33,6 @@ nav a, nav span {
   letter-spacing: 0px;
 }
 
-nav .network {
-  margin-right: 5rem;
-}
-
 nav a:hover, nav span:hover {
   text-decoration: underline;
 }
