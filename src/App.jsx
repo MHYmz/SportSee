@@ -3,6 +3,7 @@ import React from 'react'
 import Navbar from './components/Navbar/Navbar'
 import Slidebar from './components/Slidebar/Slidebar'
 import PerformanceRadar from './components/PerformanceRadar/PerformanceRadar'
+import ProfileDetails from './components/ProfileDetails/ProfileDetails'
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       <Navbar />
       <Slidebar />
       <PerformanceRadar />
+      <ProfileDetails />
     </div>
   )
 }

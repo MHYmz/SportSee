@@ -1,6 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useEffect, useState } from "react";
-import { getPerformance } from "/src/Api/userApi.js";
+import { fetchUserPerformance } from "/src/Api/userApi.js";
 import {
   RadarChart,
   PolarGrid,
@@ -8,7 +8,7 @@ import {
   PolarRadiusAxis,
   Radar,
 } from "recharts";
-import "./PerformanceRadar.css"
+import "./PerformanceRadar.scss"
 
 const PerformanceRadar = () => {
   const [userPerformance, setUserPerformance] = useState(null);
@@ -16,7 +16,7 @@ const PerformanceRadar = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await getPerformance(18);
+        const result = await fetchUserPerformance(18);
         setUserPerformance({
           kinds: result.data.kind,
           data: result.data.data,
@@ -39,7 +39,7 @@ const PerformanceRadar = () => {
   }));
 
   return (
-    <div className="PerformanceRadar" style={{ backgroundColor: "#282D30" }}>
+    <div className="PerformanceRadar">
       <RadarChart width={275} height={263} data={radarData}>
         <PolarGrid />
         <PolarAngleAxis dataKey="kind" stroke="#FFFFFF" className="col w-25" />

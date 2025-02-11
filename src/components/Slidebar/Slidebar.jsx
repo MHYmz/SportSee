@@ -5,7 +5,7 @@ import strech from "../../assets/strech.png"
 import swimming from "../../assets/swimming.png"
 import cycling from "../../assets/cycling.png"
 import weightTraining from "../../assets/weightTraining.png"
-import "./Slidebar.css"
+import "./Slidebar.scss"
 
 const Slidebar = () => {
   return (
