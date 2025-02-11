@@ -14,7 +14,6 @@ const ProfileDetails = () => {
     async function fetchData() {
       try {
         const response = await fetchUserInfo(12); 
-        console.log("Données utilisateur reçues :", response); // 👀 DEBUG ICI
         setUserData(response);
       } catch (error) {
         setError('Erreur lors de la récupération des informations');

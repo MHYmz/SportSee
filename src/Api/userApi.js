@@ -5,7 +5,7 @@ const BASE_URL = "http://localhost:3000";
 // Fonction pour récupérer les informations générales de l'utilisateur
 export const fetchUserInfo = async (userId) => {
   const response = await axios.get(`${BASE_URL}/user/${userId}`);
-  console.log("Réponse API:", response.data);
+
   const userData = response.data.data; 
  
   return {
