@@ -1,27 +1,86 @@
-import { useEffect, useState } from "react";
-import { fetchSessionTrends } from "/src/Api/userApi.js";
-import {LineChart, CartesianGrid,XAxis,YAxis,Tooltip, Legend,Line,} from "recharts";
-import "./StatGraph.scss"
+// eslint-disable-next-line no-unused-vars
+import React, { useEffect, useState } from "react";
+import { fetchUserActivity } from "/src/Api/userApi.js";
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  Tooltip,
+  Legend,
+  CartesianGrid,
+  ResponsiveContainer,
+} from "recharts";
+import "./StatGraph.scss";
 
-export default function SessionTrendsChart() {
-  const [sessionData, setSessionData] = useState([]);
+const StatGraph = () => {
+  const [activityData, setActivityData] = useState(null);
 
   useEffect(() => {
-    fetchSessionTrends(18).then((response) => {
-      setSessionData(response.data.sessions);
-    });
+    const loadData = async () => {
+      try {
+        const response = await fetchUserActivity(18);
+        const formattedData = response.data.sessions.map((session, index) => ({
+          ...session,
+          dayIndex: index + 1,
+        }));
+        setActivityData(formattedData);
+      } catch (error) {
+        console.error("Erreur lors de la récupération des données d'activité :", error);
+      }
+    };
+
+    loadData();
   }, []);
 
+  if (!activityData) {
+    return null;
+  }
+
+  const renderTooltip = ({ active, payload }) => {
+    if (active && payload && payload.length) {
+      return (
+        <div className="custom-tooltip">
+          <p>{`${payload[0].value} kg`}</p>
+          <p>{`${payload[1].value} kCal`}</p>
+        </div>
+      );
+    }
+    return null;
+  };
+
   return (
-    <div className="chart-container">
-      <LineChart width={702} height={145}  data={sessionData} margin={{ top: 10, right: 25, left: 15, bottom: 10 }}>
-        <CartesianGrid strokeDasharray="4 4" />
-        <XAxis dataKey="day" />
-        <YAxis />
-        <Tooltip />
-        <Legend />
-        <Line type="monotone" dataKey="sessionLength" stroke="#82ca9d" />
-      </LineChart>
+    <div className="stat-graph">
+      <h3>Activité quotidienne</h3>
+      <ResponsiveContainer width="100%" height={250}>
+        <BarChart data={activityData} barGap={4} barCategoryGap={3}>
+          <Legend verticalAlign="top" align="right" iconType="circle" wrapperStyle={{ marginTop: "-20px" }} />
+          <CartesianGrid strokeDasharray="3 3" vertical={false} />
+          <XAxis
+            dataKey="dayIndex"
+            tickLine={false}
+            axisLine={false}
+            tick={{ fill: "#9B9EAC" }}
+            domain={[1, 9]}
+            allowDecimals={false}
+            tickFormatter={(tick) => tick} 
+            />
+          <YAxis
+            yAxisId="left"
+            tickLine={false}
+            axisLine={false}
+            orientation="right"
+            tick={{ fill: "#9B9EAC" }}
+            domain={['dataMin', 'dataMax']} 
+            />
+          <YAxis yAxisId="right" hide />
+          <Tooltip content={renderTooltip} />
+          <Bar name="Poids (kg)" dataKey="kilogram" fill="#282D30" radius={[10, 10, 0, 0]} yAxisId="left" />
+          <Bar name="Calories brûlées (kCal)" dataKey="calories" fill="#E60000" radius={[10, 10, 0, 0]} yAxisId="right" />
+        </BarChart>
+      </ResponsiveContainer>
     </div>
   );
-}
+};
+
+export default StatGraph;
