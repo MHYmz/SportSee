@@ -1,0 +1,22 @@
+.custom-tooltip {
+  background-color:rgba(255, 255, 255, 1) ;
+  color: black;
+  padding: calc(1px + 0px) calc(10px + 0px);
+}
+.lineChartWrapper {
+  background-color:rgba(255, 0, 0, 1);
+  border-radius: 5px;
+}
+.graphTracking {
+  position: relative;
+  margin-left: 200px;
+  margin-top: 20px;
+  h3 {
+    position: absolute;
+    font-size: 15px;
+    font-weight: 500;
+    left: 20px;
+    font-family: "Roboto" sans-serif;
+    color: rgba(255, 255, 255, 0.5);
+  }
+}

@@ -52,7 +52,7 @@ const StatGraph = () => {
   return (
     <div className="stat-graph">
       <h3>Activité quotidienne</h3>
-      <ResponsiveContainer width="100%" height={250}>
+      <ResponsiveContainer width={870} height={300}>
         <BarChart data={activityData} barGap={4} barCategoryGap={3}>
           <Legend verticalAlign="top" align="right" iconType="circle" wrapperStyle={{ marginTop: "-20px" }} />
           <CartesianGrid strokeDasharray="3 3" vertical={false} />

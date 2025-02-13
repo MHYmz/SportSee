@@ -5,6 +5,7 @@ import Slidebar from './components/Slidebar/Slidebar'
 import PerformanceRadar from './components/PerformanceRadar/PerformanceRadar'
 import ProfileDetails from './components/ProfileDetails/ProfileDetails'
 import StatGraph from './components/StatGraph/StatGraph'
+import GraphTracking from './components/GraphTracking/GraphTracking'
 function App() {
   return (
     <div>
@@ -13,6 +14,7 @@ function App() {
       <PerformanceRadar />
       <ProfileDetails />
       <StatGraph />
+      <GraphTracking />
     </div>
   )
 }
