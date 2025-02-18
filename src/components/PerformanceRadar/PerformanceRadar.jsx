@@ -10,7 +10,7 @@ import {
 } from "recharts";
 import "./PerformanceRadar.scss"
 
-const PerformanceRadar = () => {
+const PerformanceRadar = ({ perfRadar }) => {
   const [userPerformance, setUserPerformance] = useState(null);
 
   useEffect(() => {
@@ -29,7 +29,9 @@ const PerformanceRadar = () => {
     fetchData();
   }, []);
 
-  if (!userPerformance) {
+
+  const performanceData = perfRadar || userPerformance;
+  if (!performanceData) {
     return null;
   }
 

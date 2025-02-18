@@ -3,9 +3,8 @@ import React, { useState, useEffect } from 'react';
 import { fetchUserInfo } from "/src/Api/userApi.js";
 import './ProfileDetails.scss'; 
 import { RadialBarChart, RadialBar, Legend, ResponsiveContainer } from 'recharts';
-import UserGreeting from './UserGreeting'; 
 
-const ProfileDetails = () => {
+const ProfileDetails = ({ results }) => {
   const [userData, setUserData] = useState(null);
   const [error, setError] = useState(null);
 
@@ -30,51 +29,37 @@ const ProfileDetails = () => {
     );
   }
 
-  const chartData = userData ? [
-    {
-      uv: userData.score * 100,
-      fill: 'rgb(255, 0, 0)', 
-    },
-    {
-      uv: 100, 
-      fill: 'rgb(251, 251, 251)',
-    },
-  ] : [];
-
-  function StyledTag(payload) {
+  function StyledTag({ payload }) {
+    const todayScore = payload?.[0]?.payload?.uv ?? 0;  // Vérifie et prend la valeur 0 si pas de donnée
+  
     return (
       <div className="dailyPerformance">
-        <p className="percentage"><strong>{payload.payload[0].payload.uv}%</strong></p> 
+        <p className="percentage"><strong>{todayScore}%</strong></p> 
         <p><span className="subtext">de votre</span></p> 
         <p><span className="subtext">objectif</span></p> 
       </div>
     );
   }
-
+  
   return (
-    <div className="profile-container">
-      {/* Utilisation du composant UserGreeting pour afficher le message de bienvenue */}
-      <UserGreeting userData={userData} />
-
-      {userData && (
         <div className="score-chart">
           <div className='score-label'>Score</div>
+          {userData && (
           <ResponsiveContainer width="100%" height="100%">
             <RadialBarChart
               innerRadius={80}
               outerRadius={105}
               startAngle={90}
               endAngle={1200}
-              data={chartData}
+              data={results}
             >
               <RadialBar dataKey="uv" cornerRadius={100} />
               <Legend content={<StyledTag />} />
             </RadialBarChart>
           </ResponsiveContainer>
+          )}
         </div>
-      )}
-    </div>
   );
-};
+}
 
 export default ProfileDetails;

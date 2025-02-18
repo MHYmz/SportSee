@@ -4,7 +4,7 @@ import { fetchUserActivity } from "/src/Api/userApi.js";
 import { Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis,} from "recharts";
 import "./GraphTracking.scss";
 
-const GraphTracking = () => {
+const GraphTracking = ({graphsTrack}) => {
   const [activityData, setActivityData] = useState(null);
 
   useEffect(() => {
@@ -44,7 +44,7 @@ const GraphTracking = () => {
       <h3>Durée moyenne des <br/>sessions</h3>
       <ResponsiveContainer width={258} height={263} className="lineChartWrapper">
         <LineChart
-          data={activityData} 
+          data={graphsTrack} 
           margin={{ top: 10, right: 0, left: 5, bottom: 10 }}
           width={258}
           height={263}

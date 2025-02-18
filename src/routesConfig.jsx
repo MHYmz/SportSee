@@ -5,7 +5,7 @@ import Template from "./components/Template";
 import Dashboard from "./pages/Dashboard";
 import Welcome from "./pages/Welcome";
 import NotFound from "./pages/NotFound";
-import loadUserData from "./Loader/loadUserData"
+import loadUser from "./Loader/loadUser"
 
 
 export default function AppRouter() {
@@ -22,7 +22,7 @@ export default function AppRouter() {
         {
           path: "/user/:id",
           element: <Dashboard />,
-          loader: loadUserData,
+          loader: loadUser,
           errorElement: <NotFound/>
         },
         {

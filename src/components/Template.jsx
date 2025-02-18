@@ -5,12 +5,12 @@ import Navbar from "./Navbar/Navbar";
 
 function Template() {
   return (
-    <div>
+        <>
         <Navbar />
         <main>
             <Outlet />
         </main>
-        </div>
+        </>
   )
 }
 

@@ -13,7 +13,7 @@ import {
 } from "recharts";
 import "./StatGraph.scss";
 
-const StatGraph = () => {
+const StatGraph = ({ tasksFlow }) => {
   const [activityData, setActivityData] = useState(null);
 
   useEffect(() => {
@@ -23,6 +23,7 @@ const StatGraph = () => {
         const formattedData = response.data.sessions.map((session, index) => ({
           ...session,
           dayIndex: index + 1,
+          tasksFlow: tasksFlow[index],
         }));
         setActivityData(formattedData);
       } catch (error) {
@@ -31,7 +32,7 @@ const StatGraph = () => {
     };
 
     loadData();
-  }, []);
+  }, [tasksFlow]);
 
   if (!activityData) {
     return null;
