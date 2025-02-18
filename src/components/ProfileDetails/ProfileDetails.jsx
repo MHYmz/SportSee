@@ -3,13 +3,12 @@ import React, { useState, useEffect } from 'react';
 import { fetchUserInfo } from "/src/Api/userApi.js";
 import './ProfileDetails.scss'; 
 import { RadialBarChart, RadialBar, Legend, ResponsiveContainer } from 'recharts';
+import UserGreeting from './UserGreeting'; 
 
 const ProfileDetails = () => {
-  // État pour stocker les données utilisateur et gérer les erreurs
   const [userData, setUserData] = useState(null);
-  const [error, setError] = useState(null); // Pour gérer les erreurs
+  const [error, setError] = useState(null);
 
-  // Fonction pour récupérer les données de l'utilisateur
   useEffect(() => {
     async function fetchData() {
       try {
@@ -23,7 +22,6 @@ const ProfileDetails = () => {
     fetchData();
   }, []);  
 
-  // Affichage en cas d'erreur
   if (error) {
     return (
       <div className="error-container">
@@ -32,10 +30,9 @@ const ProfileDetails = () => {
     );
   }
 
-  // Données pour le graphique radial
   const chartData = userData ? [
     {
-      uv: userData.score * 100, // Score de l'utilisateur, multiplié par 100 pour le pourcentage
+      uv: userData.score * 100,
       fill: 'rgb(255, 0, 0)', 
     },
     {
@@ -44,7 +41,6 @@ const ProfileDetails = () => {
     },
   ] : [];
 
-  // Personnalisation de la légende du graphique
   function StyledTag(payload) {
     return (
       <div className="dailyPerformance">
@@ -57,24 +53,9 @@ const ProfileDetails = () => {
 
   return (
     <div className="profile-container">
-      {/* Si userData est défini (c'est-à-dire si les données de l'utilisateur ont été récupérées) */}
-      {userData ? (
-        <div className="profile-content">
-          <h2 className='full-name'>
-            <span className="greeting">Bonjour</span> 
-            <span className="first-name">{userData.userInfos.firstName}</span> 👋
-          </h2>
-          <div className="Congratulations">
-            <h3>Félicitation ! Vous avez explosé vos objectifs hier 👏 </h3>
-          </div>
-        </div>
-      ) : (
-        <div className="loading-container">
-          <p>Chargement des données...</p>
-        </div>
-      )}
+      {/* Utilisation du composant UserGreeting pour afficher le message de bienvenue */}
+      <UserGreeting userData={userData} />
 
-      {/* Affichage du graphique en bas à droite */}
       {userData && (
         <div className="score-chart">
           <div className='score-label'>Score</div>

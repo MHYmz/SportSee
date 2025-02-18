@@ -1,0 +1,41 @@
+.profile-content {
+    margin-top: 50px;
+    margin-left: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  h2 {
+    display: flex;
+    gap: 1vh;
+  
+    .greeting {
+      color: black;
+    }
+  
+    .first-name {
+      color: red;
+      gap: 1px;
+    }
+  }
+  
+  .full-name {
+    color: black;
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+    font-size: 48px;
+    line-height: 24px;
+    letter-spacing: 0px;
+  }
+  
+  .Congratulations {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: 0px;
+    margin-top: 10px;
+    color: rgb(40, 45, 48);
+  }
+  
