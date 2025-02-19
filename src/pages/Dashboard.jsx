@@ -1,6 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import React from 'react'
-import { loadUserData } from "react-router-dom";
+import loadUserData from "../Loader/loadUser";
 import Slidebar from "../components/Slidebar/Slidebar"
 import UserGretting from '../components/UserGretting/UserGretting';
 import GraphTracking from '../components/GraphTracking/GraphTracking';
@@ -10,8 +10,6 @@ import ProfileDetails from '../components/ProfileDetails/ProfileDetails'
 
 export default function Dashboard () {
   const { infosGen, taskFlow,graphTrack,perf,result } = loadUserData ();
-
-
 
   return (
     <>
