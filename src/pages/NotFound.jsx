@@ -1,10 +1,17 @@
 // eslint-disable-next-line no-unused-vars
-import React from 'react'
+import React from "react";
+import { NavLink } from "react-router-dom";
 
-function NotFound() {
+export default function NotFound() {
   return (
-    <div>NotFound</div>
-  )
+    <>
+      <h1>Page introuvable</h1>
+      <p>La page que vous recherchez nexiste pas.</p>
+      <nav>
+        <NavLink to="/" aria-label="Retour à l'accueil">
+          Retour à laccueil
+        </NavLink>
+      </nav>
+    </>
+  );
 }
-
-export default NotFound
