@@ -1,6 +1,5 @@
 // eslint-disable-next-line no-unused-vars
-import React, { useEffect, useState } from "react";
-import { fetchUserPerformance } from "/src/Api/userApi.js";
+import React from "react";
 import {
   RadarChart,
   PolarGrid,
@@ -10,39 +9,26 @@ import {
 } from "recharts";
 import "./PerformanceRadar.scss"
 
-const PerformanceRadar = ({ perfRadar }) => {
-  const [userPerformance, setUserPerformance] = useState(null);
+  export default function PerformanceRadar ({perfRadar}) {
+    console.log(perfRadar);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const result = await fetchUserPerformance(18);
-        setUserPerformance({
-          kinds: result.data.kind,
-          data: result.data.data,
-        });
-      } catch (error) {
-        console.error("Error fetching performance data:", error);
-      }
-    };
+    if (!perfRadar || !perfRadar.data) {
+      return <div>Chargement des Données</div>; // Affiche un message de chargement ou un fallback
+    }
 
-    fetchData();
-  }, []);
+ // Transformation des données avant de les passer au graphique
+ const formattedData = perfRadar.data.map((item) => ({
+  ...item,
+  category: perfRadar.kind && perfRadar.kind[item.kind], // Associer la catégorie à partir de kind
+}));
 
+const chartWidth = 275;
+const chartHeight = 263;
 
-  const performanceData = perfRadar || userPerformance;
-  if (!performanceData) {
-    return null;
-  }
-
-  const radarData = userPerformance.data.map((elt) => ({
-    ...elt,
-    kind: userPerformance.kinds[elt.kind],
-  }));
 
   return (
     <div className="PerformanceRadar">
-      <RadarChart width={275} height={263} data={radarData}>
+      <RadarChart width={chartWidth} height={chartHeight} data={formattedData} >
         <PolarGrid />
         <PolarAngleAxis dataKey="kind" stroke="#FFFFFF" className="col w-25" />
         <PolarRadiusAxis angle={30} domain={[0, 200]} tick={false}/>
@@ -56,5 +42,3 @@ const PerformanceRadar = ({ perfRadar }) => {
     </div>
   );
 };
-
-export default PerformanceRadar;

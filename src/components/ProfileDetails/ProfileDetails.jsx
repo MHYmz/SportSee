@@ -1,65 +1,55 @@
 // eslint-disable-next-line no-unused-vars
-import React, { useState, useEffect } from 'react';
-import { fetchUserInfo } from "/src/Api/userApi.js";
+import React from 'react';
 import './ProfileDetails.scss'; 
 import { RadialBarChart, RadialBar, Legend, ResponsiveContainer } from 'recharts';
 
-const ProfileDetails = ({ results }) => {
-  const [userData, setUserData] = useState(null);
-  const [error, setError] = useState(null);
+export default function ProfileDetails({ results }) {
+    console.log("Données reçues dans ProfileDetails:", results);
 
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const response = await fetchUserInfo(12); 
-        setUserData(response);
-      } catch (error) {
-        setError('Erreur lors de la récupération des informations');
-        console.error("Erreur :", error);
-      }
+    const StyledTag = ({ payload }) => {
+        const todayScore = payload?.[0]?.payload?.todayScore ?? 0; 
+        console.log("todayScore dans StyledTag:", todayScore); 
+        return (
+            <div className="dailyPerformance">
+                <p className="percentage"><strong>{todayScore}%</strong></p> 
+                <p><span className="subtext">de votre</span></p> 
+                <p><span className="subtext">objectif</span></p> 
+            </div>
+        );
+    };
+
+    if (!results || results.length === 0) {
+        return <div>Loading...</div>; 
     }
-    fetchData();
-  }, []);  
 
-  if (error) {
-    return (
-      <div className="error-container">
-        <p>{error}</p>
-      </div>
-    );
-  }
+    const innerRadius = 80;
+    const outerRadius = 105;
+    const startAngle = 90;
+    const endAngle = 90 + (360 * (results[0]?.todayScore / 100));
 
-  function StyledTag({ payload }) {
-    const todayScore = payload?.[0]?.payload?.uv ?? 0;  // Vérifie et prend la valeur 0 si pas de donnée
-  
+
+
     return (
-      <div className="dailyPerformance">
-        <p className="percentage"><strong>{todayScore}%</strong></p> 
-        <p><span className="subtext">de votre</span></p> 
-        <p><span className="subtext">objectif</span></p> 
-      </div>
-    );
-  }
-  
-  return (
         <div className="score-chart">
-          <div className='score-label'>Score</div>
-          {userData && (
-          <ResponsiveContainer width="100%" height="100%">
-            <RadialBarChart
-              innerRadius={80}
-              outerRadius={105}
-              startAngle={90}
-              endAngle={1200}
-              data={results}
-            >
-              <RadialBar dataKey="uv" cornerRadius={100} />
-              <Legend content={<StyledTag />} />
-            </RadialBarChart>
-          </ResponsiveContainer>
-          )}
-        </div>
-  );
-}
+            <div className="score-label">Score</div>
+            <ResponsiveContainer width="100%" height="100%">
+                <RadialBarChart
+                    innerRadius={innerRadius}
+                    outerRadius={outerRadius}
+                    startAngle={startAngle}
+                    endAngle={endAngle}
+                    data={results}
+                >
+                    
+                    <RadialBar 
+                        dataKey="todayScore" 
+                        fill="#ff0000" 
+                        cornerRadius={50} 
+                    />
 
-export default ProfileDetails;
+                    <Legend content={<StyledTag />} />
+                </RadialBarChart>
+            </ResponsiveContainer>
+        </div>
+    );
+}

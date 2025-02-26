@@ -1,47 +1,42 @@
 // eslint-disable-next-line no-unused-vars
-import React, { useEffect, useState } from "react";
-import { fetchUserActivity } from "/src/Api/userApi.js";
-import {
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  Tooltip,
-  Legend,
-  CartesianGrid,
-  ResponsiveContainer,
+import React from "react";
+import { 
+  BarChart, 
+  Bar, 
+  XAxis, 
+  YAxis, 
+  Tooltip, 
+  Legend, 
+  CartesianGrid, 
+  ResponsiveContainer 
 } from "recharts";
 import "./StatGraph.scss";
 
-const StatGraph = ({ tasksFlow }) => {
-  const [activityData, setActivityData] = useState(null);
-
-  useEffect(() => {
-    const loadData = async () => {
-      try {
-        const response = await fetchUserActivity(18);
-        const formattedData = response.data.sessions.map((session, index) => ({
-          ...session,
-          dayIndex: index + 1,
-          tasksFlow: tasksFlow[index],
-        }));
-        setActivityData(formattedData);
-      } catch (error) {
-        console.error("Erreur lors de la récupération des données d'activité :", error);
-      }
-    };
-
-    loadData();
-  }, [tasksFlow]);
-
-  if (!activityData) {
-    return null;
+export default function StatGraph({ tasksFlow = []}) {
+  if (!Array.isArray(tasksFlow) || tasksFlow.length === 0) {
+    return <p>Aucune donnée disponible</p>;
   }
+  
+  
+  const data = [];
+  for (let idx = 0; idx < tasksFlow.length; idx++) {
+    const elt = tasksFlow[idx];
+    data.push({
+      ...elt,
+      dayIndex: idx + 1
+    });
+  }
+    
+  const commonBarProps = {
+    barSize: 7,
+    barGap: 4,
+    barCategoryGap: 3,
+  };
 
   const renderTooltip = ({ active, payload }) => {
     if (active && payload && payload.length) {
       return (
-        <div className="custom-tooltip">
+        <div className="custom-tooltip-activity">
           <p>{`${payload[0].value} kg`}</p>
           <p>{`${payload[1].value} kCal`}</p>
         </div>
@@ -50,11 +45,14 @@ const StatGraph = ({ tasksFlow }) => {
     return null;
   };
 
+const chartWidth = 870;
+const chartHeight = 300;
+
   return (
     <div className="stat-graph">
       <h3>Activité quotidienne</h3>
-      <ResponsiveContainer width={870} height={300}>
-        <BarChart data={activityData} barGap={4} barCategoryGap={3}>
+      <ResponsiveContainer width={chartWidth} height={chartHeight}>
+        <BarChart data={data} {...commonBarProps}>
           <Legend verticalAlign="top" align="right" iconType="circle" wrapperStyle={{ marginTop: "-20px" }} />
           <CartesianGrid strokeDasharray="3 3" vertical={false} />
           <XAxis
@@ -64,24 +62,22 @@ const StatGraph = ({ tasksFlow }) => {
             tick={{ fill: "#9B9EAC" }}
             domain={[1, 9]}
             allowDecimals={false}
-            tickFormatter={(tick) => tick} 
-            />
+            tickFormatter={(tick) => tick}
+          />
           <YAxis
             yAxisId="left"
             tickLine={false}
             axisLine={false}
             orientation="right"
             tick={{ fill: "#9B9EAC" }}
-            domain={['dataMin', 'dataMax']} 
-            />
+            domain={['dataMin - 1', 'dataMax + 1']}
+          />
           <YAxis yAxisId="right" hide />
           <Tooltip content={renderTooltip} />
-          <Bar name="Poids (kg)" dataKey="kilogram" fill="#282D30" radius={[10, 10, 0, 0]} yAxisId="left" />
-          <Bar name="Calories brûlées (kCal)" dataKey="calories" fill="#E60000" radius={[10, 10, 0, 0]} yAxisId="right" />
+          <Bar name="Poids (kg)" dataKey="kilogram" fill="#282D30" radius={[10, 10, 0, 0]} yAxisId="left" {...commonBarProps} />
+          <Bar name="Calories brûlées (kCal)" dataKey="calories" fill="#E60000" radius={[10, 10, 0, 0]} yAxisId="right" {...commonBarProps} />
         </BarChart>
       </ResponsiveContainer>
     </div>
   );
-};
-
-export default StatGraph;
+}

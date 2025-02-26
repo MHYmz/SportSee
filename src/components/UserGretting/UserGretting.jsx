@@ -1,38 +1,24 @@
 // eslint-disable-next-line no-unused-vars
-import React, { useState, useEffect } from "react";
-import { fetchUserInfo } from "/src/Api/userApi.js";
-import "./UserGretting.scss"
+import React from "react";
 
-// Fonction fléchée pour UserGreeting
-const UserGreeting = ({ infoGen }) => {
-  const [userData, setUserData] = useState(null);
-  const userId = 1;
+export default function UserGretting({infoGen}) {
+  let content; // Variable pour contenir le contenu à afficher
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const data = await fetchUserInfo(userId);
-      setUserData(data);
-    };
-
-    fetchData();
-  }, [userId]);
-
-  if (!userData) {
-    return <div>Chargement des données...</div>;
+  // Vérifie si les données sont chargées ou non
+  if (!infoGen) {
+    content = <div>Chargement des données...</div>; // Affiche un message de chargement si infoGen est vide
+  } else {
+    // Si infoGen est disponible, extrait le prénom de l'utilisateur
+    const { firstName } = infoGen.userInfos;
+    content = (
+      <h1>
+        Bonjour {" "}
+        <span className="id" style={{color: "red"}}>
+          {firstName} 
+        </span>
+      </h1>
+    );
   }
 
-  return (
-    <div className="profile-content">
-      <h2 className="full-name">
-        <span className="greeting">Bonjour</span>
-        <span className="first-name">{infoGen.userInfos.firstName}</span> 👋
-      </h2>
-      <div className="Congratulations">
-        <h3>Félicitation ! Vous avez explosé vos objectifs hier 👏</h3>
-      </div>
-    </div>
-  );
+  return content; // Retourne le contenu final
 }
-
-// Exportation après la déclaration
-export default UserGreeting;
