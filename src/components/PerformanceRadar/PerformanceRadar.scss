@@ -1,21 +1,17 @@
 .PerformanceRadar {
-  background-color: rgb(40, 45, 48);
+  background: #282d30;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   padding: 3px;
-  box-sizing: border-box;
   border-radius: 5px;
-  position: fixed;
-  bottom: 20px;
-  left: 40%;
-  transform: translateX(-50%);
-  z-index: 1;
+  width: 273px;
+  height: 273px;
+  margin: -273px 0 0 504px;
+  box-sizing: border-box;
 
-  .col.w-25 {
-    font-size: 9px;
-    font-weight: 500;
-    color: white;
-    font-family: 'Roboto', sans-serif;
+  .PolarAngleAxis {
+    font: 500 9px 'Roboto', sans-serif;
+    color: #fff;
   }
 }
