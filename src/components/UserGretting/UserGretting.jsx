@@ -12,12 +12,15 @@ export default function UserGretting({infoGen}) {
     // Si infoGen est disponible, extrait le prénom de l'utilisateur
     const { firstName } = infoGen.userInfos;
     content = (
-      <h1>
+      <div className="user-gretting">
+        <h1>
         Bonjour {" "}
         <span className="id" style={{color: "red"}}>
           {firstName} 
         </span>
       </h1>
+       <h2>Félicitations ! Vous avez explosé vos objectifs hier 👏</h2>
+       </div>
     );
   }
 

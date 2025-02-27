@@ -1,32 +1,40 @@
+html, body {
+  margin : 0;
+  padding: 0;
+  height: 100%;
+}
+
 .Slidebar {
-  background: black;
+  background:black;
   color: white;
-  position: absolute;
-  min-height: 100vh;
+  position: fixed;
   z-index: 2;
-  width: 117px;
+  width: 100px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-  left: -1px;
+  left: 0px;
+  top: 0;
+  height: 100vh;
 
   span {
-    writing-mode: vertical-rl;
-    transform: rotate(180deg);
+    writing-mode: vertical-lr;
     font-size: 12px;
     position: absolute;
     bottom: 25px;
+    transform: rotate(180deg) translateX(-20px);
   }
 
   img {
-    width: 64px; 
-    height: 64px;
+    width: 48px; 
+    height: 48px;
     border: 2px solid white; 
     border-radius: 6px; 
     padding: 5px; 
     background-color: white;
+    transform: translateX(15px);
   }
 
   ul {

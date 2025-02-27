@@ -47,7 +47,6 @@ export default function Dashboard() {
             <Slidebar />
             <div className="frontView">
                 <UserGretting infoGen={userStats.infosGen} />
-                <h2>Félicitations ! Vous avez explosé vos objectifs hier 👏</h2>
                 <div className="frontView__Dashboard">
                     <div className="frontView__Dashboard--front">
                         <StatGraph tasksFlow={userStats.taskFlow} />

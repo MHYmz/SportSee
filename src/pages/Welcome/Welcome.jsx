@@ -11,11 +11,11 @@ const Welcome = () => {
 
   return (
     <>
-      <h1>Bienvenue sur SportSee</h1>
-      <nav>
+      <h1 className='hello' id="hello-id"> 🚀 Bienvenue sur SportSee</h1>
+      <nav className='nav-class'>
         <ul className="nav">
           {users.map(user => (
-            <li key={user.id} className="nav__item">
+            <li key={user.id} className="nav__item" id={`nav-item-${user.id}`}>
               <NavLink
                 to={`/user/${user.id}`}
                 aria-label={user.linkText}

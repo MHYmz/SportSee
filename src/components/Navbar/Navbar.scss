@@ -1,39 +1,64 @@
+html, body {
+  overflow-x: hidden;
+}
+
 header {
   width: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-  nav {
-    background-color:black;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 30px;
-    box-shadow: 0 4px 4px black;
-    position: relative;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 3;
-    height: auto;
+.nav-sportsee {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  background: black;
+  color: white; 
+  padding: 20px 30px;
+  box-shadow: .25rem .25rem .25rem gray;
+  position: relative;
+  z-index: 3;
+  height: 80px;
+  overflow-x: hidden;
+}
 
-    img {
-      width: 178px;
-    }
+header img {
+  height: 3.5rem;
+  cursor: pointer;
+}
 
-    a,
-    span {
-      color: white;
-      text-decoration: none;
-      font-size: 24px;
-      text-align: center;
-      font-family: 'Roboto', sans-serif;
-      font-weight: 500;
-      line-height: 24px;
-      letter-spacing: 0px;
-    }
+.nav-sportsee a,
+.nav-sportsee span {
+  color: white !important;
+  font-size: 1.5rem;
+  font-weight: 500;
+  text-decoration: none !important; 
+}
 
-    a:hover,
-    span:hover {
-      text-decoration: underline;
-    }
+.nav-sportsee a:hover,
+.nav-sportsee span:hover {
+  text-decoration: underline !important; 
+}
+
+
+.nav-sportsee a:focus,
+.nav-sportsee a:hover {
+  color: white !important; 
+  outline: none; 
+}
+
+.nav-links {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  list-style: none;
+  flex: 1 0 auto;
+  padding: 0;
+  margin: 0;
+
+  li {
+    margin: 0 1.5rem;
   }
 }

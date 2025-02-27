@@ -32,7 +32,7 @@ export default function ProfileDetails({ results }) {
     return (
         <div className="score-chart">
             <div className="score-label">Score</div>
-            <ResponsiveContainer width="100%" height="100%">
+            <ResponsiveContainer width="100%" height={273}>
                 <RadialBarChart
                     innerRadius={innerRadius}
                     outerRadius={outerRadius}

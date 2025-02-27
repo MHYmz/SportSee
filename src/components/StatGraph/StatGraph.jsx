@@ -53,7 +53,7 @@ const chartHeight = 300;
       <h3>Activité quotidienne</h3>
       <ResponsiveContainer width={chartWidth} height={chartHeight}>
         <BarChart data={data} {...commonBarProps}>
-          <Legend verticalAlign="top" align="right" iconType="circle" wrapperStyle={{ marginTop: "-20px" }} />
+          <Legend verticalAlign="top" align="right" iconType="circle" wrapperStyle={{ marginTop: "-20px", transform:"translateX(-50px)"}} />
           <CartesianGrid strokeDasharray="3 3" vertical={false} />
           <XAxis
             dataKey="dayIndex"

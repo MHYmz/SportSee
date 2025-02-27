@@ -6,8 +6,8 @@ import './Navbar.scss';
 const Navbar = () => {
   return (
     <header>
-      <nav>
-        <img src="./sportsee.png" alt="SportSee Logo" />
+      <nav className='nav-sportsee'>
+        <img src="/sportsee.png" alt="SportSee Logo" />
         <Link to="/">Accueil</Link>
         <span>Profil</span>
         <span>Paramètres</span>
