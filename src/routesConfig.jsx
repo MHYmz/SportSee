@@ -2,8 +2,8 @@
 import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Template from "./components/Template";
-import Dashboard from "./pages/Dashboard";
-import Welcome from "./pages/Welcome";
+import Dashboard from "./pages/Dashboard/Dashboard";
+import Welcome from "./pages/Welcome/Welcome";
 import NotFound from "./pages/NotFound";
 import loadUser from "./Loader/loadUser"
 

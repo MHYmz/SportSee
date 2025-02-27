@@ -1,14 +1,16 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import loadUser from '../Loader/loadUser';
-import Slidebar from '../components/Slidebar/Slidebar';
-import UserGretting from '../components/UserGretting/UserGretting';
-import GraphTracking from '../components/GraphTracking/GraphTracking';
-import StatGraph from '../components/StatGraph/StatGraph';
-import PerformanceRadar from '../components/PerformanceRadar/PerformanceRadar';
-import ProfileDetails from '../components/ProfileDetails/ProfileDetails';
-import NutrientCards from '../components/NutrientCards/NutrientCards';
-import UserStats from '../utils/UserStats';
+import loadUser from '../../Loader/loadUser';
+import Slidebar from '../../components/Slidebar/Slidebar';
+import UserGretting from '../../components/UserGretting/UserGretting';
+import GraphTracking from '../../components/GraphTracking/GraphTracking';
+import StatGraph from '../../components/StatGraph/StatGraph';
+import PerformanceRadar from '../../components/PerformanceRadar/PerformanceRadar';
+import ProfileDetails from '../../components/ProfileDetails/ProfileDetails';
+import NutrientCards from '../../components/NutrientCards/NutrientCards';
+import UserStats from '../../utils/UserStats';
+
+import "./Dashboard.scss"
 
 export default function Dashboard() {
     const { id } = useParams();

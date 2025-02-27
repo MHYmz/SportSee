@@ -1,5 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import React from "react";
+import "./UserGretting.scss";
 
 export default function UserGretting({infoGen}) {
   let content; // Variable pour contenir le contenu à afficher

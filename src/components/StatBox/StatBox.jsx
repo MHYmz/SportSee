@@ -1,5 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import React from "react";
+import "./StatBox.scss";
 
 export default function StatBox({ label, icon, value, unit }) {
   return (
