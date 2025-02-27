@@ -19,7 +19,7 @@ import "./PerformanceRadar.scss"
  // Transformation des données avant de les passer au graphique
  const formattedData = perfRadar.data.map((item) => ({
   ...item,
-  category: perfRadar.kind && perfRadar.kind[item.kind], // Associer la catégorie à partir de kind
+  kindLabel: perfRadar.categories && perfRadar.categories[item.kind], // Associer la catégorie à partir de kind
 }));
 
 const chartWidth = 275;
@@ -30,7 +30,7 @@ const chartHeight = 263;
     <div className="PerformanceRadar">
       <RadarChart width={chartWidth} height={chartHeight} data={formattedData} >
         <PolarGrid />
-        <PolarAngleAxis dataKey="kind" stroke="#FFFFFF" className="col w-25" />
+        <PolarAngleAxis dataKey="kindLabel" stroke="#FFFFFF" tick={{ fontSize:9}} />
         <PolarRadiusAxis angle={30} domain={[0, 200]} tick={false}/>
         <Radar
           dataKey="value"

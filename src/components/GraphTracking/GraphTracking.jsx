@@ -52,7 +52,7 @@ const GraphTracking = ({ graphsTrack }) => {
             opacity={0.5}
             tickLine={false}
             axisLine={false}
-            tickFormatter={(tick) => daysOfWeek[tick]}
+            tickFormatter={(tick) => daysOfWeek[tick -1]}
           />
           <YAxis
             padding={{ top: 70, bottom: 25 }}
