@@ -15,11 +15,6 @@ export default async function loadUser({ params } = {}) {
     const sessionTrendsResponse = await fetchSessionTrends(id);
     const userPerformanceResponse = await fetchUserPerformance(id);
 
-    console.log("Réponse userInfo :", userInfoResponse);
-    console.log("Réponse userActivity :", userActivityResponse);
-    console.log("Réponse sessionTrends :", sessionTrendsResponse);
-    console.log("Réponse userPerformance :", userPerformanceResponse);
-
     if (!userInfoResponse || !userInfoResponse.data) {
       throw new Error("Données utilisateur introuvables dans userInfoResponse");
     }

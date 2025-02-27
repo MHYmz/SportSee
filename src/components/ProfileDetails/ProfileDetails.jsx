@@ -4,11 +4,10 @@ import './ProfileDetails.scss';
 import { RadialBarChart, RadialBar, Legend, ResponsiveContainer } from 'recharts';
 
 export default function ProfileDetails({ results }) {
-    console.log("Données reçues dans ProfileDetails:", results);
 
     const StyledTag = ({ payload }) => {
         const todayScore = payload?.[0]?.payload?.todayScore ?? 0; 
-        console.log("todayScore dans StyledTag:", todayScore); 
+      
         return (
             <div className="dailyPerformance">
                 <p className="percentage"><strong>{todayScore}%</strong></p> 

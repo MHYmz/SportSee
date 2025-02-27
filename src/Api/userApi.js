@@ -22,7 +22,7 @@ export const apiService = () => {
     return {
       fetchUserInfo: async (id) => {
         try {
-          console.log("Appel API pour récupérer les informations de l'utilisateur avec l'ID:", id);
+
         const response = await fetch("/mocks/userDetails.json");
         const result = await response.json();
         const user = result.find(findUser(id));

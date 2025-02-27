@@ -7,11 +7,7 @@ const GraphTracking = ({ graphsTrack }) => {
   const daysOfWeek = ["L", "M", "M", "J", "V", "S", "D"];
 
 
-  const chartWidth = 258;
-  const chartHeight = 263;
-
-
-  const chartMargin = { top: 10, right: 0, left: 5, bottom: 10 };
+  
 
   // Fonction pour gérer l'affichage du tooltip
   const renderTooltip = ({ active, payload }) => {
@@ -38,12 +34,10 @@ const GraphTracking = ({ graphsTrack }) => {
   return (
     <div className="graphTracking">
       <h3>Durée moyenne des <br />sessions</h3>
-      <ResponsiveContainer width={chartWidth} height={chartHeight} className="lineChartWrapper">
+      <ResponsiveContainer width="100%" height="100%" className="lineChartWrapper">
         <LineChart
           data={graphsTrack}
-          margin={chartMargin}
-          width={chartWidth}
-          height={chartHeight}
+          margin={{ top: 10, right: 0, left: 5, bottom: 10 }}
           onMouseMove={handleMouseMove}
         >
           <XAxis

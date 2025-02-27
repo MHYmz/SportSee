@@ -4,15 +4,13 @@ export default class UserStats {
 
       this._score = infosGen.todayScore ?? infosGen.score ?? 0;
 
-      console.log("Score dans UserStats (avant conversion) : ", this._score); 
-
       this.taskFlow = taskFlow;
       this.graphTrack = graphTrack;
       this._perf = perf;
   }
 get score() {
     const scoreValue = this._score ?? 0; // Par défaut, on met 0 si aucune valeur n'est fournie.
-    console.log("scoreValue dans le getter :", scoreValue); 
+    
 
     return [
         {

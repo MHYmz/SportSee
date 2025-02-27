@@ -4,8 +4,8 @@
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  width: 835px;
-  height: 320px;
+  width: 870px;
+  height: 300px;
   margin-left: 200px;
   margin-bottom: 40px;
   margin-top: 40px;
@@ -47,4 +47,13 @@
   .recharts-bar-rectangle {
     stroke-width: 2px;
   }
+}
+
+@media screen and (max-width: 1024px) and (max-height: 780px) {
+  .stat-graph {
+     width: 560px;  
+    height: 200px;
+    transform: translateX(-80px);
+  }
+
 }

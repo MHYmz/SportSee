@@ -24,7 +24,6 @@ export default function Dashboard() {
             }
             try {
                 const data = await loadUser({ params: { id } });
-                console.log("Données reçues de loadUser:", data); 
                 setUserData(data);
             } catch (e) {
                 console.error("Erreur lors du chargement des données utilisateur :", e);
@@ -38,9 +37,6 @@ export default function Dashboard() {
 
 
     const userStats = new UserStats(userData.infosGen, userData.taskFlow, userData.graphTrack, userData.perf);
-    
-    console.log("UserStats dans Dashboard :", userStats.score); 
-    console.log(userData.perf)
 
     return (
         <>

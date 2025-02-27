@@ -10,7 +10,6 @@ import {
 import "./PerformanceRadar.scss"
 
   export default function PerformanceRadar ({perfRadar}) {
-    console.log(perfRadar);
 
     if (!perfRadar || !perfRadar.data) {
       return <div>Chargement des Données</div>; // Affiche un message de chargement ou un fallback

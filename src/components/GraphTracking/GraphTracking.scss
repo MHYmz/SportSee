@@ -11,6 +11,8 @@
   position: relative;
   margin-left: 200px;
   margin-top: 20px;
+  height: 263px;
+  width: 258px;
   h3 {
     position: absolute;
     font-size: 15px;
@@ -18,5 +20,17 @@
     left: 20px;
     font-family: "Roboto" sans-serif;
     color: rgba(255, 255, 255, 0.5);
+  }
+}
+@media screen and (max-width: 1024px) and (max-height: 780px) {
+  .graphTracking {
+    width: 200px;
+    height: 200px;
+    transform: translateX(-90px);
+  }
+  
+  h3 {
+    font-size: 12px;
+    left: 10px;
   }
 }

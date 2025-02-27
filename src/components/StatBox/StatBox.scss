@@ -6,7 +6,7 @@
     background-color: rgba(251, 251, 251, 1);
     width: 220px;
     margin-left: auto;
-    transform: translateX(8rem);
+    transform: translateX(5rem);
 
     .stat-box__icon {
       display: flex;
@@ -41,4 +41,31 @@
       font-weight: 500;
     }
   }
+
+  @media screen and (max-width: 1024px) and (max-height: 780px) {
+    .stat-box {
+      width: 180px;
+      transform: translateY(-1rem);
+      flex-direction: column;
+      padding: 5px;
+  
+      .stat-box__icon {
+        margin: 2px;
+        width: 50px;
+        height: 50px;
+        margin-top: -15px;
+      }
+  
+      .info-gramme {
+        font-size: 18px;
+        margin-top: -5px; 
+      }
+  
+      .info-type {
+        font-size: 12px;
+        margin-top: 0; 
+      }
+    }
+  }
+  
   

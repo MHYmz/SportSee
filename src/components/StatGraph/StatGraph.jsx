@@ -45,13 +45,10 @@ export default function StatGraph({ tasksFlow = []}) {
     return null;
   };
 
-const chartWidth = 870;
-const chartHeight = 300;
-
   return (
     <div className="stat-graph">
       <h3>Activité quotidienne</h3>
-      <ResponsiveContainer width={chartWidth} height={chartHeight}>
+      <ResponsiveContainer width="100%" height="100%">
         <BarChart data={data} {...commonBarProps}>
           <Legend verticalAlign="top" align="right" iconType="circle" wrapperStyle={{ marginTop: "-20px", transform:"translateX(-50px)"}} />
           <CartesianGrid strokeDasharray="3 3" vertical={false} />
