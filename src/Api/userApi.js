@@ -1,4 +1,3 @@
-// userApi.js
 import axios from "axios";
 
 const BASE_URL = "http://localhost:3000";
@@ -15,8 +14,9 @@ if (useMock) {
   console.log("Mode API activé 🌐");
 }
 
-export const apiService = () => {
-  const findUser = (id) => (user) => user.id === parseInt(id, 10);
+export const apiService = () => { 
+   // Permet de trouver un utilisateur en vérifiant "id" ou "userId"
+  const findUser = (id) => (item) => (item.id || item.userId )=== parseInt(id, 10);
 
   if (useMock) {
     return {
@@ -27,7 +27,9 @@ export const apiService = () => {
         const result = await response.json();
         const user = result.find(findUser(id));
 
-        return user ? { data: { data: { ...user, score: Number(user.todayScore || user.score) || 0 } } } : null;
+        return user 
+        ? { data: { data: { ...user, score: Number(user.todayScore || user.score) || 0 } } } 
+        : null;
       } catch (error) {
         console.error("Erreur lors du chargement des infos utilisateur mockées:", error);
         return null;
@@ -38,15 +40,12 @@ export const apiService = () => {
         const response = await fetch("/mocks/userMove.json");
         const result = await response.json();
         const userActivity = result.find(findUser(id));
-
-        if (userActivity) {
-          return { data: { data: { sessions: userActivity.sessions } } };
-        } else {
-          return null; 
-        }
+        return userActivity
+        ? { data: { data: { sessions: userActivity.sessions } } }
+        : null;
       } catch (error) {
         console.error ("Erreur lors du chargement de l'activité mockée", error);
-        return {data : null };
+        return null ;
       }
     },
 
@@ -56,7 +55,8 @@ export const apiService = () => {
         const result = await response.json();
         const userGraphTrack = result.find(findUser(id));
 
-        return userGraphTrack  ? { data: { data: { sessions: userGraphTrack.sessions } } } : null;
+        return userGraphTrack  ? { data: { data: { sessions: userGraphTrack.sessions } } } 
+        : null;
       } catch (error) {
         console.error ("Erreur lors du chargement des sessions mockées:", error);
         return null
@@ -68,7 +68,9 @@ export const apiService = () => {
         const result = await response.json();
         const userPerfRadar = result.find(findUser(id));
 
-        return userPerfRadar ? { data: { data: userPerfRadar } } : null;
+        return userPerfRadar 
+        ? { data: { data: userPerfRadar } } 
+        : null;
       } catch (error) {
         console.error ("Erreur lors du chargement des performances mockées", error)
         return null;
@@ -91,7 +93,8 @@ export const apiService = () => {
 
     fetchUserActivity: async (id) => {
       try {
-      return (await axios.get(`${BASE_URL}/user/${id}/activity`)).data;
+        const response = await axios.get(`${BASE_URL}/user/${id}/activity`);
+        return { data: { data: response.data.data } };
     } catch (error) {
       console.error("Erreur lors du chargement de l'activité API:", error);
       return null;
@@ -101,7 +104,8 @@ export const apiService = () => {
 
     fetchSessionTrends: async (id) => {
       try {
-      return (await axios.get(`${BASE_URL}/user/${id}/average-sessions`)).data;
+        const response = await axios.get(`${BASE_URL}/user/${id}/average-sessions`);
+        return { data: { data: response.data.data } };
     } catch (error) {
       console.error("Erreur lors du chargement des sessions API:", error);
       return null;
@@ -110,7 +114,8 @@ export const apiService = () => {
 
     fetchUserPerformance: async (id) => {
       try {
-      return (await axios.get(`${BASE_URL}/user/${id}/performance`)).data;
+        const response = await axios.get(`${BASE_URL}/user/${id}/performance`);
+        return { data: { data: response.data.data || response.data } };
     } catch (error) {
       console.error("Erreur lors du chargement des Performances API:", error )
       return null;
